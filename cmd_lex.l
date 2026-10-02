@@ -48,6 +48,8 @@
 
 . {return CMDSEP;}
 
+return LPAR; {return RPAR;}
+
 [ \n\r\f\t]*  { continue; }
 
 %%
