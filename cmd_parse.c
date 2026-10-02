@@ -1,4 +1,49 @@
+/* A Bison parser, made by GNU Bison 3.8.2.  */
 
+/* Bison implementation for Yacc-like parsers in C
+
+   Copyright (C) 1984, 1989-1990, 2000-2015, 2018-2021 Free Software Foundation,
+   Inc.
+
+   This program is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
+
+/* As a special exception, you may create a larger work that contains
+   part or all of the Bison parser skeleton and distribute that work
+   under terms of your choice, so long as that work isn't itself a
+   parser generator using the skeleton or a modified version thereof
+   as a parser skeleton.  Alternatively, if you modify or redistribute
+   the parser skeleton itself, you may (at your option) remove this
+   special exception, which will cause the skeleton and the resulting
+   Bison output files to be licensed under the GNU General Public
+   License without this special exception.
+
+   This special exception was added by the Free Software Foundation in
+   version 2.2 of Bison.  */
+
+/* C LALR(1) parser skeleton written by Richard Stallman, by
+   simplifying the original so-called "semantic" parser.  */
+
+/* DO NOT RELY ON FEATURES THAT ARE NOT DOCUMENTED in the manual,
+   especially those whose name start with YY_ or yy_.  They are
+   private implementation details that can be changed or removed.  */
+
+/* All symbols defined below should begin with yy or YY, to avoid
+   infringing on user name space.  This should be done even for local
+   variables, as they might otherwise be expanded by user macros.
+   There are some unavoidable exceptions within include files to
+   define necessary library symbols; they are noted "INFRINGES ON
+   USER NAME SPACE" below.  */
 
 /* Identify Bison output, and Bison version.  */
 #define YYBISON 30802
@@ -82,7 +127,19 @@ enum yysymbol_kind_t
   YYSYMBOL_RBRACE = 14,                    /* RBRACE  */
   YYSYMBOL_LABEL = 15,                     /* LABEL  */
   YYSYMBOL_YYACCEPT = 16,                  /* $accept  */
-  YYSYMBOL_input = 17                      /* input  */
+  YYSYMBOL_input = 17,                     /* input  */
+  YYSYMBOL_variable = 18,                  /* variable  */
+  YYSYMBOL_sym = 19,                       /* sym  */
+  YYSYMBOL_int = 20,                       /* int  */
+  YYSYMBOL_float = 21,                     /* float  */
+  YYSYMBOL_string = 22,                    /* string  */
+  YYSYMBOL_name_list = 23,                 /* name_list  */
+  YYSYMBOL_function = 24,                  /* function  */
+  YYSYMBOL_value_expression = 25,          /* value_expression  */
+  YYSYMBOL_long_option = 26,               /* long_option  */
+  YYSYMBOL_arguments_list = 27,            /* arguments_list  */
+  YYSYMBOL_command = 28,                   /* command  */
+  YYSYMBOL_command_list = 29               /* command_list  */
 };
 typedef enum yysymbol_kind_t yysymbol_kind_t;
 
@@ -411,18 +468,18 @@ union yyalloc
 #endif /* !YYCOPY_NEEDED */
 
 /* YYFINAL -- State number of the termination state.  */
-#define YYFINAL  2
+#define YYFINAL  9
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   0
+#define YYLAST   45
 
 /* YYNTOKENS -- Number of terminals.  */
 #define YYNTOKENS  16
 /* YYNNTS -- Number of nonterminals.  */
-#define YYNNTS  2
+#define YYNNTS  14
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  3
+#define YYNRULES  25
 /* YYNSTATES -- Number of states.  */
-#define YYNSTATES  3
+#define YYNSTATES  43
 
 /* YYMAXUTOK -- Last valid token kind.  */
 #define YYMAXUTOK   270
@@ -471,9 +528,11 @@ static const yytype_int8 yytranslate[] =
 
 #if YYDEBUG
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
-static const yytype_int8 yyrline[] =
+static const yytype_uint8 yyrline[] =
 {
-       0,    65,    65,    67
+       0,    65,    65,    68,    74,    79,    84,    89,    94,    95,
+      98,   105,   106,   107,   108,   109,   110,   112,   116,   122,
+     123,   125,   128,   135,   136,   138
 };
 #endif
 
@@ -492,13 +551,15 @@ yysymbol_name (yysymbol_kind_t yysymbol)
   {
   "end of file", "error", "invalid token", "SYM", "STR", "INT", "FLT",
   "VARREF", "OPTSTART", "OPTPAIR", "CMDSEP", "LPAR", "RPAR", "LBRACE",
-  "RBRACE", "LABEL", "$accept", "input", YY_NULLPTR
+  "RBRACE", "LABEL", "$accept", "input", "variable", "sym", "int", "float",
+  "string", "name_list", "function", "value_expression", "long_option",
+  "arguments_list", "command", "command_list", YY_NULLPTR
   };
   return yy_sname[yysymbol];
 }
 #endif
 
-#define YYPACT_NINF (-1)
+#define YYPACT_NINF (-18)
 
 #define yypact_value_is_default(Yyn) \
   ((Yyn) == YYPACT_NINF)
@@ -512,7 +573,11 @@ yysymbol_name (yysymbol_kind_t yysymbol)
    STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-      -1,     0,    -1
+      -1,   -18,     7,    15,     0,    -1,    16,   -18,     6,   -18,
+     -18,   -18,   -18,    24,    25,    27,   -18,   -18,   -18,   -18,
+     -18,     0,     0,   -18,   -18,    -1,    26,   -18,    22,    28,
+     -18,   -18,   -18,    26,    29,    18,   -18,   -18,    21,   -18,
+      -1,    23,   -18
 };
 
 /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -520,19 +585,25 @@ static const yytype_int8 yypact[] =
    means the default is an error.  */
 static const yytype_int8 yydefact[] =
 {
-       2,     0,     1
+      23,     4,     0,     0,    19,    23,     0,     2,     0,     1,
+       7,     5,     6,     0,     0,     0,    11,    12,    13,    14,
+      15,    19,    19,    22,    24,    23,     8,     3,    17,     0,
+      20,    21,    25,     8,     0,     0,    16,     9,     0,    18,
+      23,     0,    10
 };
 
 /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-      -1,    -1
+     -18,   -18,   -17,    -3,   -18,   -18,   -18,     3,   -18,     4,
+     -18,    -9,    30,    -5
 };
 
 /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
-       0,     1
+       0,     3,    16,     4,    18,    19,    20,    34,     5,    21,
+      22,    23,     6,     7
 };
 
 /* YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
@@ -540,31 +611,47 @@ static const yytype_int8 yydefgoto[] =
    number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_int8 yytable[] =
 {
-       2
+      24,    17,     1,     1,    10,    11,    12,    13,    14,    33,
+       8,    15,    30,    31,     2,     9,    33,    26,    17,    17,
+      32,     1,    10,    11,    12,    13,    25,    27,    28,    15,
+       1,    35,    17,    13,    40,    41,    37,    42,     0,    39,
+      36,    38,     0,     0,     0,    29
 };
 
 static const yytype_int8 yycheck[] =
 {
-       0
+       5,     4,     3,     3,     4,     5,     6,     7,     8,    26,
+       3,    11,    21,    22,    15,     0,    33,    11,    21,    22,
+      25,     3,     4,     5,     6,     7,    10,     3,     3,    11,
+       3,     9,    35,     7,    13,    40,    33,    14,    -1,    35,
+      12,    12,    -1,    -1,    -1,    15
 };
 
 /* YYSTOS[STATE-NUM] -- The symbol kind of the accessing symbol of
    state STATE-NUM.  */
 static const yytype_int8 yystos[] =
 {
-       0,    17,     0
+       0,     3,    15,    17,    19,    24,    28,    29,     3,     0,
+       4,     5,     6,     7,     8,    11,    18,    19,    20,    21,
+      22,    25,    26,    27,    29,    10,    11,     3,     3,    28,
+      27,    27,    29,    18,    23,     9,    12,    23,    12,    25,
+      13,    29,    14
 };
 
 /* YYR1[RULE-NUM] -- Symbol kind of the left-hand side of rule RULE-NUM.  */
 static const yytype_int8 yyr1[] =
 {
-       0,    16,    17,    17
+       0,    16,    17,    18,    19,    20,    21,    22,    23,    23,
+      24,    25,    25,    25,    25,    25,    25,    26,    26,    27,
+      27,    27,    28,    29,    29,    29
 };
 
 /* YYR2[RULE-NUM] -- Number of symbols on the right-hand side of rule RULE-NUM.  */
 static const yytype_int8 yyr2[] =
 {
-       0,     2,     0,     0
+       0,     2,     1,     2,     1,     1,     1,     1,     0,     2,
+       8,     1,     1,     1,     1,     1,     3,     2,     4,     0,
+       2,     2,     2,     0,     2,     3
 };
 
 
@@ -1223,20 +1310,189 @@ yyreduce:
   YY_REDUCE_PRINT (yyn);
   switch (yyn)
     {
-  case 2: /* input: %empty  */
+  case 2: /* input: command_list  */
 #line 65 "cmd_parse.y"
-                       { *expression = NULL; }
-#line 1275 "cmd_parse.c"
+                    { *expression = (yyvsp[0].obj); }
+#line 1317 "cmd_parse.c"
     break;
 
-  case 3: /* input: %empty  */
-#line 67 "cmd_parse.y"
-              { *expression = NULL; }
-#line 1281 "cmd_parse.c"
+  case 3: /* variable: VARREF SYM  */
+#line 68 "cmd_parse.y"
+                     {CLObj *obj = calloc(1, sizeof(CLObj));
+  obj->type = CMD_TYPE_VARREF;
+  obj->name = (yyvsp[0].str_temp);
+  (yyval.obj) = obj;}
+#line 1326 "cmd_parse.c"
+    break;
+
+  case 4: /* sym: SYM  */
+#line 74 "cmd_parse.y"
+         {CLObj *obj = calloc(1, sizeof(CLObj));
+  obj->type = CMD_TYPE_SYMBOL;
+  obj->name = (yyvsp[0].str_temp);
+  (yyval.obj) = obj;}
+#line 1335 "cmd_parse.c"
+    break;
+
+  case 5: /* int: INT  */
+#line 79 "cmd_parse.y"
+         {CLObj *obj = calloc(1, sizeof(CLObj));
+  obj->type = CMD_TYPE_INTEGER;
+  obj->name = (yyvsp[0].str_temp);
+  (yyval.obj) = obj;}
+#line 1344 "cmd_parse.c"
+    break;
+
+  case 6: /* float: FLT  */
+#line 84 "cmd_parse.y"
+           {CLObj *obj = calloc(1, sizeof(CLObj));
+  obj->type = CMD_TYPE_FLOAT;
+  obj->name = (yyvsp[0].str_temp);
+  (yyval.obj) = obj;}
+#line 1353 "cmd_parse.c"
+    break;
+
+  case 7: /* string: STR  */
+#line 89 "cmd_parse.y"
+            {CLObj *obj = calloc(1, sizeof(CLObj));
+  obj->type = CMD_TYPE_STRING;
+  obj->name = (yyvsp[0].str_temp);
+  (yyval.obj) = obj;}
+#line 1362 "cmd_parse.c"
+    break;
+
+  case 8: /* name_list: %empty  */
+#line 94 "cmd_parse.y"
+                  {(yyval.obj) = NULL;}
+#line 1368 "cmd_parse.c"
+    break;
+
+  case 9: /* name_list: variable name_list  */
+#line 95 "cmd_parse.y"
+                             {(yyvsp[-1].obj)->next = (yyvsp[0].obj);
+        (yyval.obj) = (yyvsp[-1].obj);}
+#line 1375 "cmd_parse.c"
+    break;
+
+  case 10: /* function: LABEL SYM LPAR name_list RPAR LBRACE command_list RBRACE  */
+#line 98 "cmd_parse.y"
+                                                                   {CLObj *obj = calloc(1, sizeof(CLObj));
+  obj->type = CMD_TYPE_FUNCTION;
+  obj->name = (yyvsp[-6].str_temp);
+  obj->args = (yyvsp[-4].obj);
+  obj->body = (yyvsp[-1].obj);
+  (yyval.obj) = obj;}
+#line 1386 "cmd_parse.c"
+    break;
+
+  case 11: /* value_expression: variable  */
+#line 105 "cmd_parse.y"
+                           {(yyval.obj) = (yyvsp[0].obj);}
+#line 1392 "cmd_parse.c"
+    break;
+
+  case 12: /* value_expression: sym  */
+#line 106 "cmd_parse.y"
+              {(yyval.obj) = (yyvsp[0].obj);}
+#line 1398 "cmd_parse.c"
+    break;
+
+  case 13: /* value_expression: int  */
+#line 107 "cmd_parse.y"
+              {(yyval.obj) = (yyvsp[0].obj);}
+#line 1404 "cmd_parse.c"
+    break;
+
+  case 14: /* value_expression: float  */
+#line 108 "cmd_parse.y"
+                {(yyval.obj) = (yyvsp[0].obj);}
+#line 1410 "cmd_parse.c"
+    break;
+
+  case 15: /* value_expression: string  */
+#line 109 "cmd_parse.y"
+                 {(yyval.obj) = (yyvsp[0].obj);}
+#line 1416 "cmd_parse.c"
+    break;
+
+  case 16: /* value_expression: LPAR command RPAR  */
+#line 110 "cmd_parse.y"
+                            {(yyval.obj) = (yyvsp[-1].obj);}
+#line 1422 "cmd_parse.c"
+    break;
+
+  case 17: /* long_option: OPTSTART SYM  */
+#line 112 "cmd_parse.y"
+                          {CLObj *obj = calloc(1, sizeof(CLObj));
+  obj->type = CMD_TYPE_LONG;
+  obj->name = (yyvsp[0].str_temp);
+  (yyval.obj) = obj;}
+#line 1431 "cmd_parse.c"
+    break;
+
+  case 18: /* long_option: OPTSTART SYM OPTPAIR value_expression  */
+#line 116 "cmd_parse.y"
+                                                {CLObj *obj = calloc(1, sizeof(CLObj));
+  obj->type = CMD_TYPE_LONG;
+  obj->name = (yyvsp[-2].str_temp);
+  obj->value = (yyvsp[0].obj);
+  (yyval.obj) = obj;}
+#line 1441 "cmd_parse.c"
+    break;
+
+  case 19: /* arguments_list: %empty  */
+#line 122 "cmd_parse.y"
+                       {(yyval.obj) = NULL;}
+#line 1447 "cmd_parse.c"
+    break;
+
+  case 20: /* arguments_list: value_expression arguments_list  */
+#line 123 "cmd_parse.y"
+                                          {(yyvsp[-1].obj)->next = (yyvsp[0].obj);
+        (yyval.obj) = (yyvsp[-1].obj);}
+#line 1454 "cmd_parse.c"
+    break;
+
+  case 21: /* arguments_list: long_option arguments_list  */
+#line 125 "cmd_parse.y"
+                                     {(yyvsp[-1].obj)->next = (yyvsp[0].obj);
+        (yyval.obj) = (yyvsp[-1].obj);}
+#line 1461 "cmd_parse.c"
+    break;
+
+  case 22: /* command: sym arguments_list  */
+#line 128 "cmd_parse.y"
+                            {CLObj *obj = calloc(1, sizeof(CLObj));
+  obj->type = CMD_TYPE_COMMAND;
+  obj->name = (yyvsp[-1].obj)->name;
+  obj->args = (yyvsp[0].obj);
+  free((yyvsp[-1].obj));
+  (yyval.obj) = obj;}
+#line 1472 "cmd_parse.c"
+    break;
+
+  case 23: /* command_list: %empty  */
+#line 135 "cmd_parse.y"
+                     {(yyval.obj) = NULL;}
+#line 1478 "cmd_parse.c"
+    break;
+
+  case 24: /* command_list: function command_list  */
+#line 136 "cmd_parse.y"
+                                {(yyvsp[-1].obj)->next = (yyvsp[0].obj);
+        (yyval.obj) = (yyvsp[-1].obj);}
+#line 1485 "cmd_parse.c"
+    break;
+
+  case 25: /* command_list: command CMDSEP command_list  */
+#line 138 "cmd_parse.y"
+                                      {(yyvsp[-2].obj)->next = (yyvsp[0].obj);
+        (yyval.obj) = (yyvsp[-2].obj);}
+#line 1492 "cmd_parse.c"
     break;
 
 
-#line 1285 "cmd_parse.c"
+#line 1496 "cmd_parse.c"
 
       default: break;
     }
@@ -1439,7 +1695,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 105 "cmd_parse.y"
+#line 141 "cmd_parse.y"
 
 
 /* The code below produces more helpful syntax errors. */

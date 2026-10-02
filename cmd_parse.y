@@ -62,32 +62,32 @@ void print_loc(FILE*, YYLTYPE);
 %type <obj> command_list
 %%
 
-input:          %empty { *expression = NULL; }
+input: command_list { *expression = $1; }
         ;
 
 variable: VARREF SYM {CLObj *obj = calloc(1, sizeof(CLObj));
-  obj->type = CL_VARIABLE;
+  obj->type = CMD_TYPE_VARREF;
   obj->name = $2;
   $$ = obj;}
         ;
 
 sym: SYM {CLObj *obj = calloc(1, sizeof(CLObj));
-  obj->type = CL_SYMBOL;
+  obj->type = CMD_TYPE_SYMBOL;
   obj->name = $1;
   $$ = obj;}
         ;
 int: INT {CLObj *obj = calloc(1, sizeof(CLObj));
-  obj->type = CL_INTEGER;
+  obj->type = CMD_TYPE_INTEGER;
   obj->name = $1;
   $$ = obj;}
         ;
 float: FLT {CLObj *obj = calloc(1, sizeof(CLObj));
-  obj->type = CL_FLOAT;
+  obj->type = CMD_TYPE_FLOAT;
   obj->name = $1;
   $$ = obj;}
         ;
 string: STR {CLObj *obj = calloc(1, sizeof(CLObj));
-  obj->type = CL_STRING;
+  obj->type = CMD_TYPE_STRING;
   obj->name = $1;
   $$ = obj;}
         ;
@@ -95,8 +95,8 @@ name_list: %empty {$$ = NULL;}
         | variable name_list {$1->next = $2;
         $$ = $1;}
         ;
-function: LABEL SYM LPAR name_list RPAR LBRACE command_list RBRACE {CLOBj *obj = calloc(1, sizeof(CLObj));
-  obj->type = CL_FUNCTION;
+function: LABEL SYM LPAR name_list RPAR LBRACE command_list RBRACE {CLObj *obj = calloc(1, sizeof(CLObj));
+  obj->type = CMD_TYPE_FUNCTION;
   obj->name = $2;
   obj->args = $4;
   obj->body = $7;
@@ -109,12 +109,12 @@ value_expression: variable {$$ = $1;}
         | string {$$ = $1;}
         | LPAR command RPAR {$$ = $2;}
         ;
-long_option: OPTSTART SYM {CLOBj *obj = calloc(1, sizeof(CLObj));
-  obj->type = CL_LONG;
+long_option: OPTSTART SYM {CLObj *obj = calloc(1, sizeof(CLObj));
+  obj->type = CMD_TYPE_LONG;
   obj->name = $2;
   $$ = obj;}
-        | OPTSTART SYM OPTPAIR value_expression {CLOBj *obj = calloc(1, sizeof(CLObj));
-  obj->type = CL_LONG;
+        | OPTSTART SYM OPTPAIR value_expression {CLObj *obj = calloc(1, sizeof(CLObj));
+  obj->type = CMD_TYPE_LONG;
   obj->name = $2;
   obj->value = $4;
   $$ = obj;}
@@ -125,8 +125,8 @@ arguments_list: %empty {$$ = NULL;}
         | long_option arguments_list {$1->next = $2;
         $$ = $1;}
         ;
-command: sym arguments_list {CLOBj *obj = calloc(1, sizeof(CLObj));
-  obj->type = CL_COMMAND;
+command: sym arguments_list {CLObj *obj = calloc(1, sizeof(CLObj));
+  obj->type = CMD_TYPE_COMMAND;
   obj->name = $1->name;
   obj->args = $2;
   free($1);
@@ -135,7 +135,7 @@ command: sym arguments_list {CLOBj *obj = calloc(1, sizeof(CLObj));
 command_list: %empty {$$ = NULL;}
         | function command_list {$1->next = $2;
         $$ = $1;}
-        | command CMDSEP command_list {$1->next = $2;
+        | command CMDSEP command_list {$1->next = $3;
         $$ = $1;}
         ;
 %%
