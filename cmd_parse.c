@@ -113,8 +113,21 @@ enum yysymbol_kind_t
   YYSYMBOL_YYEOF = 0,                      /* "end of file"  */
   YYSYMBOL_YYerror = 1,                    /* error  */
   YYSYMBOL_YYUNDEF = 2,                    /* "invalid token"  */
-  YYSYMBOL_YYACCEPT = 3,                   /* $accept  */
-  YYSYMBOL_input = 4                       /* input  */
+  YYSYMBOL_SYM = 3,                        /* SYM  */
+  YYSYMBOL_STR = 4,                        /* STR  */
+  YYSYMBOL_INT = 5,                        /* INT  */
+  YYSYMBOL_FLT = 6,                        /* FLT  */
+  YYSYMBOL_VARREF = 7,                     /* VARREF  */
+  YYSYMBOL_OPTSTART = 8,                   /* OPTSTART  */
+  YYSYMBOL_OPTPAIR = 9,                    /* OPTPAIR  */
+  YYSYMBOL_CMDSEP = 10,                    /* CMDSEP  */
+  YYSYMBOL_LPAR = 11,                      /* LPAR  */
+  YYSYMBOL_RPAR = 12,                      /* RPAR  */
+  YYSYMBOL_LBRACE = 13,                    /* LBRACE  */
+  YYSYMBOL_RBRACE = 14,                    /* RBRACE  */
+  YYSYMBOL_LABEL = 15,                     /* LABEL  */
+  YYSYMBOL_YYACCEPT = 16,                  /* $accept  */
+  YYSYMBOL_input = 17                      /* input  */
 };
 typedef enum yysymbol_kind_t yysymbol_kind_t;
 
@@ -448,7 +461,7 @@ union yyalloc
 #define YYLAST   0
 
 /* YYNTOKENS -- Number of terminals.  */
-#define YYNTOKENS  3
+#define YYNTOKENS  16
 /* YYNNTS -- Number of nonterminals.  */
 #define YYNNTS  2
 /* YYNRULES -- Number of rules.  */
@@ -457,7 +470,7 @@ union yyalloc
 #define YYNSTATES  3
 
 /* YYMAXUTOK -- Last valid token kind.  */
-#define YYMAXUTOK   257
+#define YYMAXUTOK   270
 
 
 /* YYTRANSLATE(TOKEN-NUM) -- Symbol number corresponding to TOKEN-NUM
@@ -496,7 +509,9 @@ static const yytype_int8 yytranslate[] =
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-       2,     2,     2,     2,     2,     2,     1,     2
+       2,     2,     2,     2,     2,     2,     1,     2,     3,     4,
+       5,     6,     7,     8,     9,    10,    11,    12,    13,    14,
+      15
 };
 
 #if YYDEBUG
@@ -520,7 +535,9 @@ yysymbol_name (yysymbol_kind_t yysymbol)
 {
   static const char *const yy_sname[] =
   {
-  "end of file", "error", "invalid token", "$accept", "input", YY_NULLPTR
+  "end of file", "error", "invalid token", "SYM", "STR", "INT", "FLT",
+  "VARREF", "OPTSTART", "OPTPAIR", "CMDSEP", "LPAR", "RPAR", "LBRACE",
+  "RBRACE", "LABEL", "$accept", "input", YY_NULLPTR
   };
   return yy_sname[yysymbol];
 }
@@ -580,13 +597,13 @@ static const yytype_int8 yycheck[] =
    state STATE-NUM.  */
 static const yytype_int8 yystos[] =
 {
-       0,     4,     0
+       0,    17,     0
 };
 
 /* YYR1[RULE-NUM] -- Symbol kind of the left-hand side of rule RULE-NUM.  */
 static const yytype_int8 yyr1[] =
 {
-       0,     3,     4
+       0,    16,    17
 };
 
 /* YYR2[RULE-NUM] -- Number of symbols on the right-hand side of rule RULE-NUM.  */
@@ -1254,11 +1271,11 @@ yyreduce:
   case 2: /* input: %empty  */
 #line 39 "cmd_parse.y"
                        { *expression = NULL; }
-#line 1258 "cmd_parse.c"
+#line 1275 "cmd_parse.c"
     break;
 
 
-#line 1262 "cmd_parse.c"
+#line 1279 "cmd_parse.c"
 
       default: break;
     }

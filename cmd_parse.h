@@ -59,7 +59,20 @@ extern int yydebug;
     YYEMPTY = -2,
     YYEOF = 0,                     /* "end of file"  */
     YYerror = 256,                 /* error  */
-    YYUNDEF = 257                  /* "invalid token"  */
+    YYUNDEF = 257,                 /* "invalid token"  */
+    SYM = 258,                     /* SYM  */
+    STR = 259,                     /* STR  */
+    INT = 260,                     /* INT  */
+    FLT = 261,                     /* FLT  */
+    VARREF = 262,                  /* VARREF  */
+    OPTSTART = 263,                /* OPTSTART  */
+    OPTPAIR = 264,                 /* OPTPAIR  */
+    CMDSEP = 265,                  /* CMDSEP  */
+    LPAR = 266,                    /* LPAR  */
+    RPAR = 267,                    /* RPAR  */
+    LBRACE = 268,                  /* LBRACE  */
+    RBRACE = 269,                  /* RBRACE  */
+    LABEL = 270                    /* LABEL  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -71,8 +84,9 @@ union YYSTYPE
 #line 30 "cmd_parse.y"
 
     char* str_temp;
+    struct CLObj* obj_temp;
 
-#line 76 "cmd_parse.h"
+#line 90 "cmd_parse.h"
 
 };
 typedef union YYSTYPE YYSTYPE;
