@@ -40,15 +40,15 @@
 
 [A-Za-z][A-Za-z0-9]+ {yylval->str_temp = strdup(yytext) return SYM;}
 
-% {return VARREF;}
-/ {return OPTSTART;}
-= {return OPTPAIR;}
-. {return CMDSEP;}
-( {return LPAR}; 
-) {return RPAR;}
-{{return LBRACE;}
-}{return RBRACE;}
-${return LABEL;}
+\% {return VARREF;}
+\/ {return OPTSTART;}
+\= {return OPTPAIR;}
+\. {return CMDSEP;}
+\( {return LPAR}; 
+\) {return RPAR;}
+\{{return LBRACE;}
+\}{return RBRACE;}
+\${return LABEL;}
 
 [ \n\r\f\t]*  { continue; }
 
