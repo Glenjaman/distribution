@@ -47,7 +47,7 @@ void evaluate(CLObj *e)
     for (tmp = e->body; tmp != NULL; tmp = tmp->next) evaluate(tmp);
   }
   else if (e->type == CMD_TYPE_COMMAND) {
-    printf("\"COMMAND\" %s\n\"ARGS\" %d\n", e->name, count(e->args));
+    printf("\"COMMAND\" %s\n\"ARGUMENTS\" %d\n", e->name, count(e->args));
     for (tmp = e->args; tmp != NULL; tmp = tmp->next) evaluate(tmp);
   }
   else if (e->type == CMD_TYPE_PROGRAM) {

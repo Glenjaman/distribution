@@ -3,6 +3,8 @@
 #include "cmd_parse.h"
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 /* The following definition ensures that helpful syntax errors are printed: do not  */
 #define YY_USER_ACTION \
@@ -30,7 +32,13 @@
 %option bison-bridge bison-locations
 %%
 
-\"([^\\\"]|\\.)*\" { yylval->str_temp = strdup(yytext); }
+\"([^\\\"]|\\.)*\" { yylval->str_temp = strdup(yytext); return STR;}
+
+-?[0-9]+.[0-9]+ {yylval->str_temp = strdup(yytext); return FLT;}
+
+[0-9]+ {yylval->str_temp = strdup(yytext) return INT;}
+
+[A-Za-z][A-Za-z0-9]+ {yylval->str_temp = strdup{yytext} return SYM;}
 
 [ \n\r\f\t]*  { continue; }
 
