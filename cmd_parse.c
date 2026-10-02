@@ -465,7 +465,7 @@ union yyalloc
 /* YYNNTS -- Number of nonterminals.  */
 #define YYNNTS  2
 /* YYNRULES -- Number of rules.  */
-#define YYNRULES  2
+#define YYNRULES  3
 /* YYNSTATES -- Number of states.  */
 #define YYNSTATES  3
 
@@ -518,7 +518,7 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    65,    65
+       0,    65,    65,    67
 };
 #endif
 
@@ -603,13 +603,13 @@ static const yytype_int8 yystos[] =
 /* YYR1[RULE-NUM] -- Symbol kind of the left-hand side of rule RULE-NUM.  */
 static const yytype_int8 yyr1[] =
 {
-       0,    16,    17
+       0,    16,    17,    17
 };
 
 /* YYR2[RULE-NUM] -- Number of symbols on the right-hand side of rule RULE-NUM.  */
 static const yytype_int8 yyr2[] =
 {
-       0,     2,     0
+       0,     2,     0,     0
 };
 
 
@@ -1274,8 +1274,14 @@ yyreduce:
 #line 1275 "cmd_parse.c"
     break;
 
+  case 3: /* input: %empty  */
+#line 67 "cmd_parse.y"
+              { *expression = NULL; }
+#line 1281 "cmd_parse.c"
+    break;
 
-#line 1279 "cmd_parse.c"
+
+#line 1285 "cmd_parse.c"
 
       default: break;
     }
@@ -1478,7 +1484,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 68 "cmd_parse.y"
+#line 105 "cmd_parse.y"
 
 
 /* The code below produces more helpful syntax errors. */

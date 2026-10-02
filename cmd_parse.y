@@ -63,6 +63,7 @@ void print_loc(FILE*, YYLTYPE);
 %%
 
 input:          %empty { *expression = NULL; }
+
         ;
 
 variable: VARREF SYM { }
