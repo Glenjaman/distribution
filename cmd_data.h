@@ -22,6 +22,7 @@ typedef struct CLObj {
     struct CLObj *args;  
     struct CLObj *body;   
     struct CLObj *next;    
+    struct CLObj *command;
 } CLObj;
 
 void evaluate(CLObj *);
