@@ -62,7 +62,7 @@ void print_loc(FILE*, YYLTYPE);
 %type <obj> command_list
 %%
 
-input: command_list {*expression = $1;}
+input:          %empty { *expression = NULL; }
         ;
 
 variable: VARREF SYM {CLObj *obj = calloc(1, sizeof(CLObj));
