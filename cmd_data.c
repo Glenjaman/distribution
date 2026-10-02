@@ -15,7 +15,7 @@ void evaluate(CLObj *YoungSheldon)
   CLObj *tmp;
 
   if (YoungSheldon  == NULL) {
-    printf("Error: CLObj is NULL\n");
+    printf("\nError: CLObj is NULL\n");
     return;
   }
   else if (YoungSheldon->type == CMD_TYPE_STRING) {
@@ -46,9 +46,9 @@ void evaluate(CLObj *YoungSheldon)
     printf("\"BODY\" %d\n", count(YoungSheldon->body));
     for (tmp = YoungSheldon->body; tmp != NULL; tmp = tmp->next) evaluate(tmp);
   }
-  else if (e->type == CMD_TYPE_COMMAND) {
-    printf("\"COMMAND\" %s\n\"ARGUMENTS\" %d\n", e->name, count(e->args));
-    for (tmp = e->args; tmp != NULL; tmp = tmp->next) evaluate(tmp);
+  else if (YoungSheldon->type == CMD_TYPE_COMMAND) {
+    printf("\"COMMAND\" %s\n\"ARGUMENTS\" %d\n", YoungSheldon->name, count(YoungSheldon->args));
+    for (tmp = YoungSheldon->args; tmp != NULL; tmp = tmp->next) evaluate(tmp);
   }
   else if (YoungSheldon->type == CMD_TYPE_PROGRAM) {
     printf("\"PROGRAM\" %d\n", count(YoungSheldon->args));
