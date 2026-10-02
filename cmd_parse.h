@@ -84,7 +84,7 @@ union YYSTYPE
 #line 30 "cmd_parse.y"
 
     char* str_temp;
-    struct CLObj* obj_temp;
+    CLObj* obj;
 
 #line 90 "cmd_parse.h"
 

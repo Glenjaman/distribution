@@ -29,16 +29,79 @@ void print_loc(FILE*, YYLTYPE);
 
 %union {
     char* str_temp;
-    struct CLObj* obj_temp;
+    CLObj* obj;
 }
 
-%token <str_temp> SYM STR INT FLT
-%token <obj_temp> VARREF OPTSTART OPTPAIR CMDSEP LPAR RPAR LBRACE RBRACE LABEL
+%token <str_temp> SYM 
+%token <str_temp> STR 
+%token <str_temp> INT 
+%token <str_temp> FLT
+
+%token VARREF 
+%token OPTSTART 
+%token OPTPAIR 
+%token CMDSEP 
+%token LPAR 
+%token RPAR 
+%token LBRACE 
+%token RBRACE 
+%token LABEL
+
+%type <obj> input 
+%type <obj> variable 
+%type <obj> sym 
+%type <obj> int 
+%type <obj> float 
+%type <obj> string 
+%type <obj> name_list 
+%type <obj> function 
+%type <obj> value_expression 
+%type <obj> long_option 
+%type <obj> arguments_list 
+%type <obj> command 
+%type <obj> command_list
 %%
 
 input:          %empty { *expression = NULL; }
         ;
 
+variable: VARREF SYM { }
+        ;
+
+sym: SYM {}
+        ;
+int: INT {}
+        ;
+float: FLT {} 
+        ;
+string: STR {}
+        ;
+name_list: sym { }
+        | name_list CMDSEP sym { }
+        ;
+function: LABEL SYM LPAR RPAR name_list command_list LBRACE RBRACE {}
+        ;
+value_expression: variable {}
+        | sym {}
+        | int {}
+        | float {}
+        | string {}
+        ;
+long_option: OPTSTART SYM {}
+        | OPTSTART SYM OPTPAIR value_expression {}
+        ;
+arguments_list: %empty {}
+        | arguments_list value_expression {}
+        | arguments_list long_option {}
+        ;
+command: sym arguments_list {}
+        | value_expression arguments_list {}
+        | long_option arguments_list {}
+        ;
+command_list: %empty {}
+        | function command_list {}
+        | command CMDSEP command_list {}
+        ;
 %%
 
 /* The code below produces more helpful syntax errors. */

@@ -518,7 +518,7 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    39,    39
+       0,    65,    65
 };
 #endif
 
@@ -1269,7 +1269,7 @@ yyreduce:
   switch (yyn)
     {
   case 2: /* input: %empty  */
-#line 39 "cmd_parse.y"
+#line 65 "cmd_parse.y"
                        { *expression = NULL; }
 #line 1275 "cmd_parse.c"
     break;
@@ -1478,7 +1478,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 42 "cmd_parse.y"
+#line 68 "cmd_parse.y"
 
 
 /* The code below produces more helpful syntax errors. */
