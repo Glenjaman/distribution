@@ -5,5 +5,5 @@
 
 void evaluate(CLObj *e)
 {
-  /* TODO: Implement output routine */
+  /* TODO: Implement output routine PENIS */
 }
