@@ -16,13 +16,12 @@ typedef enum {
 
 typedef struct CLObj {
     CLObjType type;
-    char *name;       
-    char *text;            
-    struct CLObj *value;  
-    struct CLObj *args;  
-    struct CLObj *body;   
+    char *name;
+    char *command;
+    struct CLObj *args;
+    struct CLObj *body;
+    struct CLObj *value;   
     struct CLObj *next;    
-    struct CLObj *command;
 } CLObj;
 
 void evaluate(CLObj *);
