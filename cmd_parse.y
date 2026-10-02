@@ -29,13 +29,13 @@ void print_loc(FILE*, YYLTYPE);
 
 %union {
     char* str_temp;
+    struct CLObj* obj_temp;
 }
 
+%token <str_temp> SYM STR INT FLT
+%token <obj_temp> VARREF OPTSTART OPTPAIR CMDSEP LPAR RPAR LBRACE RBRACE LABEL
 %%
 
-/* TODO: Fill in the parser */
-
-/* TODO: Your top-level rule should put an object of type CLObj* into *expression */
 input:          %empty { *expression = NULL; }
         ;
 
