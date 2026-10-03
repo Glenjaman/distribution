@@ -19,39 +19,39 @@ void evaluate(CLObj *e)
     return;
   }
   else if (e->type == CMD_TYPE_STRING) {
-    printf("\"STRING\" %zu %s\n", strlen(e->command), e->command);
+    printf("STRING %zu %s\n", strlen(e->command), e->command);
   }
   else if (e->type == CMD_TYPE_INTEGER) {
-    printf("\"INTEGER\" %d\n", atoi(e->command));
+    printf("INTEGER %d\n", atoi(e->command));
   }
   else if (e->type == CMD_TYPE_FLOAT) {
-    printf("\"FLOAT\" %f\n", atof(e->command));
+    printf("FLOAT %f\n", atof(e->command));
   }
   else if (e->type == CMD_TYPE_FLAG) {
-    printf("\"FLAG\" %s\n", e->command);
+    printf("FLAG %s\n", e->name);
   }
   else if (e->type == CMD_TYPE_VARREF) {
-    printf("\"VARREF\" %s\n", e->name);
+    printf("VARREF %s\n", e->name);
   }
   else if (e->type == CMD_TYPE_SYMBOL) {
-    printf("\"SYMBOL\" %s\n", e->name);
+    printf("SYMBOL %s\n", e->name);
   }
   else if (e->type == CMD_TYPE_LONG) {
-    printf("\"LONG OPT\" %s\n", e->name);
+    printf("LONG OPT %s\n", e->name);
     evaluate(e->value);
   }
   else if (e->type == CMD_TYPE_FUNCTION) {
-    printf("\"FUNCTION\" %s\n\"ARGS\" %d\n", e->name, count(e->args));
+    printf("FUNCTION %s\nARGUMENTS %d\n", e->name, count(e->args));
     for (tmp = e->args; tmp != NULL; tmp = tmp->next) evaluate(tmp);
-    printf("\"BODY\" %d\n", count(e->body));
+    printf("BODY %d\n", count(e->body));
     for (tmp = e->body; tmp != NULL; tmp = tmp->next) evaluate(tmp);
   }
   else if (e->type == CMD_TYPE_COMMAND) {
-    printf("\"COMMAND\" %s\n\"ARGUMENTS\" %d\n", e->name, count(e->args));
+    printf("COMMAND %s\nARGS %d\n", e->name, count(e->args));
     for (tmp = e->args; tmp != NULL; tmp = tmp->next) evaluate(tmp);
   }
   else if (e->type == CMD_TYPE_PROGRAM) {
-    printf("\"PROGRAM\" %d\n", count(e->args));
+    printf("PROGRAM %d\n", count(e->args));
     for (tmp = e->args; tmp != NULL; tmp = tmp->next) evaluate(tmp);
   }
   else {
