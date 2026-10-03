@@ -26,6 +26,7 @@ void print_loc(FILE*, YYLTYPE);
 %lex-param { yyscan_t scanner }
 %parse-param { CLObj **expression }
 %parse-param { yyscan_t scanner }
+%initial-action { *expression = NULL; }
 
 %union {
     char* str_temp;
@@ -62,8 +63,13 @@ void print_loc(FILE*, YYLTYPE);
 %type <obj> command_list
 %%
 
-input: command_list { *expression = $1; }
-        ;
+input: command_list {
+  CLObj *p = calloc(1, sizeof(CLObj));
+  p->type = CMD_TYPE_PROGRAM;
+  p->args = $1;
+  *expression = p;
+}
+;
 
 variable: VARREF SYM {CLObj *obj = calloc(1, sizeof(CLObj));
   obj->type = CMD_TYPE_VARREF;
@@ -110,7 +116,7 @@ value_expression: variable {$$ = $1;}
         | LPAR command RPAR {$$ = $2;}
         ;
 long_option: OPTSTART SYM {CLObj *obj = calloc(1, sizeof(CLObj));
-  obj->type = CMD_TYPE_LONG;
+  obj->type = CMD_TYPE_FLAG;
   obj->value = NULL;
   obj->name = $2;
   $$ = obj;}

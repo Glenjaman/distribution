@@ -81,7 +81,7 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 30 "cmd_parse.y"
+#line 31 "cmd_parse.y"
 
     char* str_temp;
     CLObj* obj;
