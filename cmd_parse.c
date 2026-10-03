@@ -531,8 +531,8 @@ static const yytype_int8 yytranslate[] =
 static const yytype_uint8 yyrline[] =
 {
        0,    65,    65,    68,    74,    79,    84,    89,    94,    95,
-      98,   105,   106,   107,   108,   109,   110,   112,   116,   122,
-     123,   125,   128,   135,   136,   138
+      98,   105,   106,   107,   108,   109,   110,   112,   117,   123,
+     124,   126,   129,   136,   137,   139
 };
 #endif
 
@@ -1425,74 +1425,75 @@ yyreduce:
 #line 112 "cmd_parse.y"
                           {CLObj *obj = calloc(1, sizeof(CLObj));
   obj->type = CMD_TYPE_LONG;
+  obj->value = NULL;
   obj->name = (yyvsp[0].str_temp);
   (yyval.obj) = obj;}
-#line 1431 "cmd_parse.c"
+#line 1432 "cmd_parse.c"
     break;
 
   case 18: /* long_option: OPTSTART SYM OPTPAIR value_expression  */
-#line 116 "cmd_parse.y"
+#line 117 "cmd_parse.y"
                                                 {CLObj *obj = calloc(1, sizeof(CLObj));
   obj->type = CMD_TYPE_LONG;
   obj->name = (yyvsp[-2].str_temp);
   obj->value = (yyvsp[0].obj);
   (yyval.obj) = obj;}
-#line 1441 "cmd_parse.c"
+#line 1442 "cmd_parse.c"
     break;
 
   case 19: /* arguments_list: %empty  */
-#line 122 "cmd_parse.y"
+#line 123 "cmd_parse.y"
                        {(yyval.obj) = NULL;}
-#line 1447 "cmd_parse.c"
+#line 1448 "cmd_parse.c"
     break;
 
   case 20: /* arguments_list: value_expression arguments_list  */
-#line 123 "cmd_parse.y"
+#line 124 "cmd_parse.y"
                                           {(yyvsp[-1].obj)->next = (yyvsp[0].obj);
         (yyval.obj) = (yyvsp[-1].obj);}
-#line 1454 "cmd_parse.c"
+#line 1455 "cmd_parse.c"
     break;
 
   case 21: /* arguments_list: long_option arguments_list  */
-#line 125 "cmd_parse.y"
+#line 126 "cmd_parse.y"
                                      {(yyvsp[-1].obj)->next = (yyvsp[0].obj);
         (yyval.obj) = (yyvsp[-1].obj);}
-#line 1461 "cmd_parse.c"
+#line 1462 "cmd_parse.c"
     break;
 
   case 22: /* command: sym arguments_list  */
-#line 128 "cmd_parse.y"
+#line 129 "cmd_parse.y"
                             {CLObj *obj = calloc(1, sizeof(CLObj));
   obj->type = CMD_TYPE_COMMAND;
   obj->name = (yyvsp[-1].obj)->name;
   obj->args = (yyvsp[0].obj);
   free((yyvsp[-1].obj));
   (yyval.obj) = obj;}
-#line 1472 "cmd_parse.c"
+#line 1473 "cmd_parse.c"
     break;
 
   case 23: /* command_list: %empty  */
-#line 135 "cmd_parse.y"
+#line 136 "cmd_parse.y"
                      {(yyval.obj) = NULL;}
-#line 1478 "cmd_parse.c"
+#line 1479 "cmd_parse.c"
     break;
 
   case 24: /* command_list: function command_list  */
-#line 136 "cmd_parse.y"
+#line 137 "cmd_parse.y"
                                 {(yyvsp[-1].obj)->next = (yyvsp[0].obj);
         (yyval.obj) = (yyvsp[-1].obj);}
-#line 1485 "cmd_parse.c"
+#line 1486 "cmd_parse.c"
     break;
 
   case 25: /* command_list: command CMDSEP command_list  */
-#line 138 "cmd_parse.y"
+#line 139 "cmd_parse.y"
                                       {(yyvsp[-2].obj)->next = (yyvsp[0].obj);
         (yyval.obj) = (yyvsp[-2].obj);}
-#line 1492 "cmd_parse.c"
+#line 1493 "cmd_parse.c"
     break;
 
 
-#line 1496 "cmd_parse.c"
+#line 1497 "cmd_parse.c"
 
       default: break;
     }
@@ -1695,7 +1696,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 141 "cmd_parse.y"
+#line 142 "cmd_parse.y"
 
 
 /* The code below produces more helpful syntax errors. */

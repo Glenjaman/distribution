@@ -111,6 +111,7 @@ value_expression: variable {$$ = $1;}
         ;
 long_option: OPTSTART SYM {CLObj *obj = calloc(1, sizeof(CLObj));
   obj->type = CMD_TYPE_LONG;
+  obj->value = NULL;
   obj->name = $2;
   $$ = obj;}
         | OPTSTART SYM OPTPAIR value_expression {CLObj *obj = calloc(1, sizeof(CLObj));
