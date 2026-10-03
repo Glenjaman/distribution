@@ -36,7 +36,7 @@ clean:
 .PHONY: submission
 submission: clean submission.tbz2
 
-submission.tbz2: cmd_data.c cmd_data.h cmd_lex.l cmd_parse.y main.c Makefile SUBMISSION_DATA.json
+submission.tbz2: cmd_data.c cmd_data.h cmd_lex.l cmd_parse.y main.c Makefile SUBMISSION_DATA.json Paragraph-Submission.txt
 	tar cjvf $@ $^
 
 .PHONY: distribution
