@@ -78,17 +78,17 @@ sym: SYM {CLObj *obj = calloc(1, sizeof(CLObj));
         ;
 int: INT {CLObj *obj = calloc(1, sizeof(CLObj));
   obj->type = CMD_TYPE_INTEGER;
-  obj->name = $1;
+  obj->command = $1;
   $$ = obj;}
         ;
 float: FLT {CLObj *obj = calloc(1, sizeof(CLObj));
   obj->type = CMD_TYPE_FLOAT;
-  obj->name = $1;
+  obj->command = $1;
   $$ = obj;}
         ;
 string: STR {CLObj *obj = calloc(1, sizeof(CLObj));
   obj->type = CMD_TYPE_STRING;
-  obj->name = $1;
+  obj->command = $1;
   $$ = obj;}
         ;
 name_list: %empty {$$ = NULL;}

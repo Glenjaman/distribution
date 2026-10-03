@@ -1338,7 +1338,7 @@ yyreduce:
 #line 79 "cmd_parse.y"
          {CLObj *obj = calloc(1, sizeof(CLObj));
   obj->type = CMD_TYPE_INTEGER;
-  obj->name = (yyvsp[0].str_temp);
+  obj->command = (yyvsp[0].str_temp);
   (yyval.obj) = obj;}
 #line 1344 "cmd_parse.c"
     break;
@@ -1347,7 +1347,7 @@ yyreduce:
 #line 84 "cmd_parse.y"
            {CLObj *obj = calloc(1, sizeof(CLObj));
   obj->type = CMD_TYPE_FLOAT;
-  obj->name = (yyvsp[0].str_temp);
+  obj->command = (yyvsp[0].str_temp);
   (yyval.obj) = obj;}
 #line 1353 "cmd_parse.c"
     break;
@@ -1356,7 +1356,7 @@ yyreduce:
 #line 89 "cmd_parse.y"
             {CLObj *obj = calloc(1, sizeof(CLObj));
   obj->type = CMD_TYPE_STRING;
-  obj->name = (yyvsp[0].str_temp);
+  obj->command = (yyvsp[0].str_temp);
   (yyval.obj) = obj;}
 #line 1362 "cmd_parse.c"
     break;

@@ -15,7 +15,7 @@ void evaluate(CLObj *e)
   CLObj *tmp;
 
   if (e == NULL) {
-    printf("\nError: CLObj is NULL\n");
+   // printf("\nError: CLObj is NULL\n");
     return;
   }
   else if (e->type == CMD_TYPE_STRING) {
